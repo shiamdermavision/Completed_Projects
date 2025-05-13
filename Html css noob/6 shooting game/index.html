@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #111;
+            font-family: Arial, sans-serif;
+        }
+        
+        canvas {
+            border: 2px solid #444;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        #loading {
+            position: absolute;
+            color: white;
+            font-size: 24px;
+        }
+        
+        #instructions {
+            position: fixed;
+            bottom: 20px;
+            color: white;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        #scoreBoard {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 5px;
+            color: white;
+            font-size: 18px;
+            text-align: right;
+        }
+        
+        #scoreBoard h3 {
+            margin: 0 0 10px 0;
+            color: #f1c40f;
+            font-size: 22px;
+        }
+        
+        #controls {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+        }
+        
+        #controls h3 {
+            margin: 0 0 10px 0;
+            color: #3498db;
+        }
+        
+        .key {
+            display: inline-block;
+            background: #444;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin: 0 5px;
+            font-family: monospace;
+            font-weight: bold;
+        }
+        
+        /* Enhanced loading screen styles */
+        .loading-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0a0e2c;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .progress-bar-container {
+            width: 300px;
+            height: 20px;
+            background-color: #111;
+            border: 2px solid white;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #3498db;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading indicator with progress bar -->
+    <div id="loading" class="loading-container">
+        <h2>Loading Game</h2>
+        <div class="progress-bar-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <div id="loading-status" style="color: #aaa; margin-top: 10px;">Preparing assets...</div>
+    </div>
+    
+    <!-- Game canvas -->
+    <canvas id="gameCanvas"></canvas>
+    
+    <!-- Game UI elements -->
+    <div id="instructions">
+        Use arrow keys to move. Collect stars and avoid enemies!<br>
+        <span style="color: #f1c40f">Tip: Collect stars quickly for combo multipliers!</span><br>
+        <span style="color: #3498db">Press SPACE or R to restart when game over</span>
+    </div>
+    
+    <div id="scoreBoard">
+        <h3>Score Board</h3>
+        <div id="currentScore">Current: 0</div>
+        <div id="highScore">Best: 0</div>
+    </div>
+    
+    <script>
+        // Simple loading animation while scripts load
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBar = document.getElementById('progress-bar');
+            const loadingStatus = document.getElementById('loading-status');
+            let progress = 0;
+            
+            const loadingInterval = setInterval(function() {
+                progress += 2;
+                if (progress > 90) {
+                    clearInterval(loadingInterval);
+                }
+                
+                if (progressBar) {
+                    progressBar.style.width = progress + '%';
+                }
+                
+                if (progress === 30) {
+                    loadingStatus.textContent = "Loading game assets...";
+                } else if (progress === 60) {
+                    loadingStatus.textContent = "Preparing game world...";
+                } else if (progress === 80) {
+                    loadingStatus.textContent = "Almost ready...";
+                }
+            }, 50);
+            
+            // High score initialization
+            const highScore = localStorage.getItem('highScore') || 0;
+            document.getElementById('highScore').textContent = `Best: ${highScore}`;
+        });
+    </script>
+    
+    <!-- Load scripts in the correct order -->
+    <script src="loading-fix.js"></script>
+    <script src="simple-restart.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>

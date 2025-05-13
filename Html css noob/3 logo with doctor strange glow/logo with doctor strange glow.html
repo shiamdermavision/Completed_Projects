@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Document</title>
+		<link
+			rel="stylesheet"
+			href="style.css"
+		/>
+		<style>
+			body {
+				background-color: #000;
+			}
+			img {
+				border-radius: 50%;
+				width: 100px;
+				height: 100px;
+				margin: auto;
+				margin-top: 50px;
+				display: block;
+				object-fit: cover;
+				object-position: center;
+				border: 5px solid #fff;
+				box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
+				animation: animate 0.1s linear infinite, colorCycle 3s linear infinite;
+			}
+			@keyframes colorCycle {
+				0% {
+					border-color: red;
+					box-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red;
+				}
+				33% {
+					border-color: green;
+					box-shadow: 0 0 10px green, 0 0 20px green, 0 0 30px green;
+				}
+				66% {
+					border-color: blue;
+					box-shadow: 0 0 10px blue, 0 0 20px blue, 0 0 30px blue;
+				}
+				100% {
+					border-color: red;
+					box-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px red;
+				}
+				@keyframes animate {
+					0% {
+						transform: scale(1) rotate(0deg);
+					}
+					50% {
+						transform: scale(1.1) rotate(15deg);
+					}
+					100% {
+						transform: scale(1) rotate(0deg);
+					}
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<img
+				src="https://imgs.search.brave.com/8pIyRZJ7weHf5n6p7-0cZp0pKKqUeboMOXKVSEpw784/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMjE2/ODIyOTIxNi9waG90/by9pbWdfMjkxMS1q/dXZlbmlsZS1lYWds/ZS1wb3J0cmFpdC53/ZWJwP2E9MSZiPTEm/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9MDg5/OVBIaTlYd1RQSWNZ/SENIdzNnQkNXVWRI/RDBneXFRQkRRS2RC/YzBOMD0"
+				alt=""
+			/>
+		</div>
+	</body>
+</html>

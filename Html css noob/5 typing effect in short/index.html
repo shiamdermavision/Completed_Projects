@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+	<h1 id="h1"></h1>
+	<script>
+	let variable1= '';
+	let h1 = document.getElementById('h1')
+	let name = 'shiam';
+	for (let i in name){
+		setTimeout(function(){
+			variable1 = variable1 + name[i];
+			h1.innerHTML = variable1;
+			console.log(variable1);
+			if (Number(i) == 4){
+				for (let j in name){
+					setTimeout(function(){
+						variable1 = variable1.slice(0, -1);
+						h1.innerHTML = variable1;
+						console.log(variable1);
+				}, 300 * j);
+			}
+		}
+	} , 300 * i)   ; 
+}
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+// done 
+		// const word = "Example abu naym shiam ...............................";
+		
+		
+// have to do 
+		// let i = 0;
+		// let isDeleting = false; // Add a flag to track deleting state
+
+		// const type = () => {
+		// 	document.body.textContent = word.substring(0, i);
+
+		// 	if (!isDeleting && i < word.length) {
+		// 		i++; // Type next character
+		// 	} else if (isDeleting && i > 0) {
+		// 		i--; // Delete previous character
+		// 	}
+
+		// 	if (i === word.length && !isDeleting) {
+		// 		isDeleting = true; // Start deleting after typing the whole word
+		// 	} else if (i === 0 && isDeleting) {
+		// 		isDeleting = false; // Start typing again after deleting all characters
+		// 	}
+
+		// 	setTimeout(type, 20); // Continue the loop
+		// }
+
+		// type();
+	</script>
+</body>
+
+</html>

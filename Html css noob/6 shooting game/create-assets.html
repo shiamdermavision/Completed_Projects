@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Asset Creator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .asset-creator {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        canvas {
+            border: 1px solid #ccc;
+            margin: 10px 0;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .instructions {
+            background-color: #e9f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Game Asset Creator</h1>
+    
+    <div class="instructions">
+        <h2>Instructions</h2>
+        <p>Use this tool to create the required assets for your game:</p>
+        <ul>
+            <li>Click "Generate" to create each asset</li>
+            <li>Click "Download" to save the image file</li>
+            <li>Save all images to the "assets" folder</li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <div class="asset-creator">
+            <h3>Player (player.png)</h3>
+            <canvas id="playerCanvas" width="100" height="100"></canvas><br>
+            <button onclick="generatePlayer()">Generate</button>
+            <button onclick="downloadImage('playerCanvas', 'player.png')">Download</button>
+        </div>
+        
+        <div class="asset-creator">
+            <h3>Enemy (enemy.png)</h3>
+            <canvas id="enemyCanvas" width="100" height="100"></canvas><br>
+            <button onclick="generateEnemy()">Generate</button>
+            <button onclick="downloadImage('enemyCanvas', 'enemy.png')">Download</button>
+        </div>
+        
+        <div class="asset-creator">
+            <h3>Background (background.png)</h3>
+            <canvas id="backgroundCanvas" width="800" height="600"></canvas><br>
+            <button onclick="generateBackground()">Generate</button>
+            <button onclick="downloadImage('backgroundCanvas', 'background.png')">Download</button>
+        </div>
+    </div>
+    
+    <script>
+        // Load the fallback assets script
+        document.write('<script src="fallback-assets.js"><\/script>');
+        
+        function generatePlayer() {
+            const canvas = document.getElementById('playerCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw player (blue triangle)
+            ctx.fillStyle = 'blue';
+            ctx.beginPath();
+            ctx.moveTo(50, 20);
+            ctx.lineTo(80, 80);
+            ctx.lineTo(20, 80);
+            ctx.closePath();
+            ctx.fill();
+            
+            // Add details
+            ctx.fillStyle = 'lightblue';
+            ctx.beginPath();
+            ctx.arc(50, 50, 15, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        function generateEnemy() {
+            const canvas = document.getElementById('enemyCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Draw enemy (red circle)
+            ctx.fillStyle = 'red';
+            ctx.beginPath();
+            ctx.arc(50, 50, 40, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Add details
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(35, 40, 10, 0, Math.PI * 2);
+            ctx.arc(65, 40, 10, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.fillStyle = 'black';
+            ctx.beginPath();
+            ctx.arc(35, 40, 5, 0, Math.PI * 2);
+            ctx.arc(65, 40, 5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+        
+        function generateBackground() {
+            const canvas = document.getElementById('backgroundCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Create a gradient background
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, '#0a0e2c');
+            gradient.addColorStop(1, '#1a1a3a');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Add some stars
+            ctx.fillStyle = 'white';
+            for (let i = 0; i < 100; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const size = Math.random() * 2 + 1;
+                ctx.beginPath();
+                ctx.arc(x, y, size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        function downloadImage(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // Generate all on page load
+        window.onload = function() {
+            generatePlayer();
+            generateEnemy();
+            generateBackground();
+        };
+    </script>
+</body>
+</html>

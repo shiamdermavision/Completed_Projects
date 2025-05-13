@@ -1,0 +1,5 @@
+This folder contains game assets (images, sounds, etc.).
+Please add the following image files:
+- player.png
+- background.png
+- enemy.png

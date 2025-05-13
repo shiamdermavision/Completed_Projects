@@ -1,0 +1,73 @@
+/* Add DS-home-points-text font */
+@font-face {
+    font-family: 'DS-home-points-text';
+    src: url('./ds_digital/DS-DIGI.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0;
+    background-color: #1B244A;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    
+    color: white;
+    margin: 8%;
+}
+.schoor1{
+    background-color: #000000;
+    border: 1px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 15vw;
+    height: 15vw;
+    border-radius: 5px;
+}
+p {
+    font-size: 12vw;
+    color: #F94F6D;
+     font-family: 'DS-home-points-text', sans-serif;
+}
+
+
+.div1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h3 {
+    font-size: 4vw;
+}
+
+h3, p {
+    margin: 8px;
+}
+
+.btn {
+    background: black;
+    color: #fff;
+    padding: 1vw 2vw;
+    margin: 1vw 0.5vw;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    font-size: 1.5vw;
+    font-family: 'DS-home-points-text', sans-serif;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+.btn:hover {
+    background: lightgray;
+    color: #000;
+    transform: translateY(-2px) scale(1.5);
+    box-shadow: 0 8px 24px rgba(249,79,109,0.3);
+}
+}
